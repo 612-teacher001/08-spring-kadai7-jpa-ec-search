@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>SP70課題リンク集</title>
+	<style>
+		body {
+			color: dimgray;
+			font-size: 14px;
+		}
+		ol {
+			counter-reset: step;
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+			line-height: 2.25;
+		}
+		ol li{
+			width: fit-content;
+		}
+		ol li::before {
+			counter-increment: step;
+			content: "Step" counter(step) "：";
+		}
+		ol li:hover {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h1>SP70課題リンク集</h1>
+	<main>
+		<h2>商品一覧画面の機能追加</h2>
+		<ol>
+			<li><a href="http://localhost:8080/items" target="_blank">商品一覧画面のキーワード検索機能の実装</a></li>
+			<li><a href="http://localhost:8080/items" target="_blank">商品一覧画面の価格検索機能の実装</a></li>
+			<li><a href="http://localhost:8080/items" target="_blank">検索結果画面での検索条件の復元</a></li>
+			<li><a href="http://localhost:8080/items" target="_blank">商品一覧の商品名リンクの実装</a></li>
+			<li><a href="http://localhost:8080/items" target="_blank">商品詳細画面の追加</a></li>
+		</ol>
+	</main>
+</body>
+</html>
