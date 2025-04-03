@@ -33,7 +33,16 @@
 			</tr>
 			<tr th:each="item:${items}">
 				<td th:text="${item.id}"></td>
-				<td th:text="${item.name}"></td>
+				<td>
+					<!-- 短縮記法：どっちを使っても可（ただし、プロジェクトとしてどちらかに統一すること！） -->
+					<a th:href="@{|/items/${item.id}|}" 
+					   th:text="${item.name}"></a>
+					<!-- Thymeleafの仕様通りの記述 -->
+					<!--
+					<a th:href="@{'/items/' + ${item.id}}" 
+					   th:text="${item.name}"></a>
+					-->
+				</td>
 				<td th:text="${item.price}"></td>
 				<td>
 					<form action="/cart/add" method="post">
