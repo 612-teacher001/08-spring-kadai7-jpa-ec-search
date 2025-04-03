@@ -11,4 +11,8 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	List<Item> findByCategoryId(Integer categoryId);
 	// SELECT * FROM items WHERE name LIKE ?
 	List<Item> findByNameContains(String keyword);
+	// SELECT * FROM items WHERE name LIKE :keyword AND price <= :maxPrice
+	List<Item> findByNameContainsAndPriceLessThanEqual(String keyword, Integer maxPrice);
+	// SELECT * FROM items WHERE price <= ?
+	List<Item> findByPriceLessThanEqual(Integer maxPrice);
 }
