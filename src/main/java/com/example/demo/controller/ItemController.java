@@ -27,6 +27,7 @@ public class ItemController {
 	public String index(
 			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
 			@RequestParam(defaultValue = "") String keyword,
+			@RequestParam(defaultValue = "0") Integer maxPrice,
 			Model model) {
 
 		// 全カテゴリー一覧を取得
@@ -42,9 +43,22 @@ public class ItemController {
 			itemList = itemRepository.findByCategoryId(categoryId);
 		}
 		
-		// キーワード検索
+		// キーワード検索と価格検索
 		if (!keyword.isEmpty()) {
-			itemList = itemRepository.findByNameContains(keyword);
+			// キーワードが入力されている場合
+			if (maxPrice > 0) {
+				// 価格が入力されている場合
+				itemList = itemRepository.findByNameContainsAndPriceLessThanEqual(keyword, maxPrice);
+			} else {
+				// 価格が入力されていない場合
+				itemList = itemRepository.findByNameContains(keyword);
+			}
+		} else {
+			// キーワードが入力されない場合
+			if (maxPrice > 0) {
+				// 価格が入力されている場合
+				itemList = itemRepository.findByPriceLessThanEqual(maxPrice);
+			}
 		}
 		
 		model.addAttribute("items", itemList);
