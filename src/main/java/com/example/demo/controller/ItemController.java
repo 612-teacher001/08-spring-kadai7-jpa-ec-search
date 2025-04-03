@@ -26,6 +26,7 @@ public class ItemController {
 	@GetMapping("/items")
 	public String index(
 			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
+			@RequestParam(defaultValue = "") String keyword,
 			Model model) {
 
 		// 全カテゴリー一覧を取得
@@ -39,6 +40,11 @@ public class ItemController {
 		} else {
 			// itemsテーブルをカテゴリーIDを指定して一覧を取得
 			itemList = itemRepository.findByCategoryId(categoryId);
+		}
+		
+		// キーワード検索
+		if (!keyword.isEmpty()) {
+			itemList = itemRepository.findByNameContains(keyword);
 		}
 		
 		model.addAttribute("items", itemList);

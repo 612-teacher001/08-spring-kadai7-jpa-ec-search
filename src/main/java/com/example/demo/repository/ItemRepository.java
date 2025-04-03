@@ -9,4 +9,6 @@ import com.example.demo.entity.Item;
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 	// SELECT * FROM items WHERE category_id = ?
 	List<Item> findByCategoryId(Integer categoryId);
+	// SELECT * FROM items WHERE name LIKE ?
+	List<Item> findByNameContains(String keyword);
 }

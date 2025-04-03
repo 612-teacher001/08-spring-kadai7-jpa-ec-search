@@ -9,6 +9,10 @@
 	<header th:replace="header"></header>
 	<hr>
 	<nav>
+		<form action="/items">
+			<input type="text" name="keyword" placeholder="商品名" />
+			<button>検索</button>
+		</form>
 		<a href="/items">全商品</a>
 		<a th:each="category:${categories}"
 	       th:href="@{/items(categoryId=${category.id})}"
