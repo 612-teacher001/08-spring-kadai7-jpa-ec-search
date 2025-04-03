@@ -27,7 +27,7 @@ public class ItemController {
 	public String index(
 			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
 			@RequestParam(defaultValue = "") String keyword,
-			@RequestParam(defaultValue = "0") Integer maxPrice,
+			@RequestParam(defaultValue = "0") Integer maxPrice, // TODO: このコードだと初期表示の際に価格が「0」と表示される
 			Model model) {
 
 		// 全カテゴリー一覧を取得
@@ -62,6 +62,8 @@ public class ItemController {
 		}
 		
 		model.addAttribute("items", itemList);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("maxPrice", maxPrice);
 
 		return "items";
 	}
